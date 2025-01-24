@@ -1,10 +1,10 @@
-INSERT INTO User (User_ID, Name, Phone, Email) VALUES
+INSERT INTO "User" (user_id, name, phone, email) VALUES
     (1, 'nagibator_228', '88005553535', 'nagibator@gmail.com'),
     (2, 'breadovv', '87777777777', 'breadov@gmail.com'),
     (3, 'doni', '86666666666', 'doni@gmail.com'),
     (4, 'nurgaly', '85555555555', 'nurgaly@gmail.com');
 
-INSERT INTO Genres (Genre_id, Genre) VALUES
+INSERT INTO "Genres" (genre_id, genre) VALUES
     (1, 'Adventure'),
     (2, 'Simulation'),
     (3, 'Sports'),
@@ -13,7 +13,7 @@ INSERT INTO Genres (Genre_id, Genre) VALUES
     (6, 'Indie'),
     (7, 'Shooter');
 
-INSERT INTO public."Games"("Genre_id", "Title", price, release_date)
+INSERT INTO public."Games"("genre_id", "title", price, release_date)
 VALUES
     (1, 'Uncharted 4: A Thief''s End', 39.99, '2016-05-10'),
 
@@ -37,6 +37,6 @@ VALUES
 
     (7, 'Call of Duty: Modern Warfare II', 69.99, '2022-10-28'),
 
-    (7, 'DOOM Eternal', 39.99, '2020-03-20')
+    (7, 'DOOM Eternal', 39.99, '2020-03-20'),
 
     (5, 'MiSide', 10.00, '2024-12-11');
