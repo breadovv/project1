@@ -26,13 +26,13 @@ public class Main {
         userDAO.create(newUser);
         System.out.println("User registered successfully: " + newUser.getName());
 
-        // Fetching user by name
+
         Users fetchedUser = userDAO.findByname(name);
         if (fetchedUser != null) {
             System.out.println("Fetched User: " + fetchedUser.getName() + " | Email: " + fetchedUser.getEmail());
         }
 
-        // Fetching all users
+
         System.out.println("All Users:");
         userDAO.findAllUsers().forEach(user ->
                 System.out.println(user.getName() + " | " + user.getEmail()));

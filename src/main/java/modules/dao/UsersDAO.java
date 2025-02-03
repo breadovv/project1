@@ -44,7 +44,7 @@ public class UsersDAO extends BaseDAO<Users, Long> {
         return users;
     }
 
-    public void deleteByname(String name) {
+    public void deleteByName(String name) {
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
         Users user = findByname(name);
