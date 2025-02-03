@@ -5,17 +5,19 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/game_shop </property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/game_shop</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">0000</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
+        <property name="hibernate.physical_naming_strategy">org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</property>
 
-        <mapping class="modules.User"/>
-        <mapping class="modules.Game"/>
-        <mapping class="modules.Genre"/>
-        <mapping class="modules.Cart"/>
+
+        <mapping class="modules.enteties.Users"/>
+        <mapping class="modules.enteties.Game"/>
+        <mapping class="modules.enteties.Genre"/>
+        <mapping class="modules.enteties.Cart"/>
 
     </session-factory>
 </hibernate-configuration>
