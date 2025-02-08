@@ -1,4 +1,5 @@
 import modules.dao.UsersDAO;
+import modules.enteties.Game;
 import modules.enteties.Users;
 import java.util.Scanner;
 
@@ -17,6 +18,10 @@ public class Main {
         String email = scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
+
+        //something with game
+        //Game newGame = new Game();
+        //newGame.setTitle(Title);
 
         Users newUser = new Users();
         newUser.setName(name);
