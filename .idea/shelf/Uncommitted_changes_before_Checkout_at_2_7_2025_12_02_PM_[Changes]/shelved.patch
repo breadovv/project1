@@ -1,0 +1,35 @@
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Default ignored files\r\n/shelf/\r\n/workspace.xml\r\n# Editor-based HTTP Client requests\r\n/httpRequests/\r\n# Datasource local storage ignored files\r\n/dataSources/\r\n/dataSources.local.xml\r\n
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+--- a/.idea/.gitignore	(revision 1b3ca82de23d64aed62a6cc3073113404c628e4e)
++++ b/.idea/.gitignore	(date 1738814968417)
+@@ -6,3 +6,4 @@
+ # Datasource local storage ignored files
+ /dataSources/
+ /dataSources.local.xml
++/target/
+Index: src/main/java/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import modules.dao.UsersDAO;\r\nimport modules.enteties.Users;\r\nimport java.util.Scanner;\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n        UsersDAO userDAO = new UsersDAO();\r\n        Scanner scanner = new Scanner(System.in);\r\n\r\n        // User Registration\r\n        System.out.println(\"Register a new user:\");\r\n        System.out.print(\"Enter name: \");\r\n        String name = scanner.nextLine();\r\n        System.out.print(\"Enter phone number: \");\r\n        String phone = scanner.nextLine();\r\n        System.out.print(\"Enter email: \");\r\n        String email = scanner.nextLine();\r\n        System.out.print(\"Enter password: \");\r\n        String password = scanner.nextLine();\r\n\r\n        Users newUser = new Users();\r\n        newUser.setName(name);\r\n        newUser.setEmail(email);\r\n        newUser.setPassword(password);\r\n        newUser.setPhone(phone);\r\n        userDAO.create(newUser);\r\n        System.out.println(\"User registered successfully: \" + newUser.getName());\r\n\r\n\r\n        Users fetchedUser = userDAO.findByname(name);\r\n        if (fetchedUser != null) {\r\n            System.out.println(\"Fetched User: \" + fetchedUser.getName() + \" | Email: \" + fetchedUser.getEmail());\r\n        }\r\n\r\n\r\n        System.out.println(\"All Users:\");\r\n        userDAO.findAllUsers().forEach(user ->\r\n                System.out.println(user.getName() + \" | \" + user.getEmail()));\r\n\r\n\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/Main.java b/src/main/java/Main.java
+--- a/src/main/java/Main.java	(revision 1b3ca82de23d64aed62a6cc3073113404c628e4e)
++++ b/src/main/java/Main.java	(date 1738816148042)
+@@ -8,7 +8,6 @@
+         Scanner scanner = new Scanner(System.in);
+ 
+         // User Registration
+-        System.out.println("Register a new user:");
+         System.out.print("Enter name: ");
+         String name = scanner.nextLine();
+         System.out.print("Enter phone number: ");
+@@ -39,4 +38,5 @@
+ 
+ 
+     }
++
+ }
