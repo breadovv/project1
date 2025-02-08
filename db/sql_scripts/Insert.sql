@@ -1,4 +1,4 @@
-INSERT INTO "User" (user_id, name, phone, email) VALUES
+INSERT INTO "Users" (user_id, name, phone, email) VALUES
     (1, 'nagibator_228', '88005553535', 'nagibator@gmail.com'),
     (2, 'breadovv', '87777777777', 'breadov@gmail.com'),
     (3, 'doni', '86666666666', 'doni@gmail.com'),
