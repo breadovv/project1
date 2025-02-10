@@ -1,11 +1,10 @@
-package modules;
 
 import modules.dao.GameDAO;
 import modules.dao.GenreDAO;
 import modules.dao.UsersDAO;
-import modules.enteties.Game;
-import modules.enteties.Genre;
-import modules.enteties.Users;
+import modules.entities.Game;
+import modules.entities.Genre;
+import modules.entities.Users;
 import java.util.List;
 import java.util.Scanner;
 

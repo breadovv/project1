@@ -1,6 +1,6 @@
 package modules.dao;
 
-import modules.enteties.Game;
+import modules.entities.Game;
 import org.hibernate.Session;
 import java.util.List;
 

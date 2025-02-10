@@ -1,8 +1,7 @@
 package modules.dao;
 
-import modules.enteties.Genre;
+import modules.entities.Genre;
 import org.hibernate.Session;
-import java.util.List;
 
 public class GenreDAO extends BaseDAO<Genre, Long> {
     public GenreDAO() {

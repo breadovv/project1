@@ -1,6 +1,6 @@
 package modules.dao;
 
-import modules.enteties.Users;
+import modules.entities.Users;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;

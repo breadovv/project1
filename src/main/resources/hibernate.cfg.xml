@@ -14,10 +14,10 @@
         <property name="hibernate.physical_naming_strategy">org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</property>
 
 
-        <mapping class="modules.enteties.Users"/>
-        <mapping class="modules.enteties.Game"/>
-        <mapping class="modules.enteties.Genre"/>
-        <mapping class="modules.enteties.Cart"/>
+        <mapping class="modules.entities.Users"/>
+        <mapping class="modules.entities.Game"/>
+        <mapping class="modules.entities.Genre"/>
+        <mapping class="modules.entities.Cart"/>
 
     </session-factory>
 </hibernate-configuration>

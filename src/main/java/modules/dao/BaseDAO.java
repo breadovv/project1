@@ -1,6 +1,6 @@
 package modules.dao;
 
-import modules.enteties.Basic;
+import modules.entities.Basic;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -1,4 +1,4 @@
-package modules.enteties;
+package modules.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

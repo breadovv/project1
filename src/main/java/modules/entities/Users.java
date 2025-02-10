@@ -1,33 +1,42 @@
-package modules.enteties;
-
+package modules.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
+
 import java.util.Objects;
 
 @Entity
-@Table(name = "\"Genre\"")
+@Table(name = "\"Users\"")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Genre implements Basic<Long> {
+public class Users implements Basic<Long>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "genre_id")
+    @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "user_password")
+    private String password;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Genre genre = (Genre) o;
-        return id != null && Objects.equals(id, genre.id);
+        Users user = (Users) o;
+        return id != null && Objects.equals(id, user.id);
     }
 
     @Override
@@ -35,3 +44,4 @@ public class Genre implements Basic<Long> {
         return getClass().hashCode();
     }
 }
+
