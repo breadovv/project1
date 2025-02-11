@@ -22,13 +22,13 @@ public class Main {
             System.out.println("1. Register a new user");
             System.out.println("2. Login");
             System.out.println("3. Browse games by genre");
-            System.out.println("4. Exit");
+            System.out.println("4. Search for a game by title");
+            System.out.println("5. Exit");
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             if (choice == 1) {
-                // рег нового юзера
                 System.out.println("\nRegister a new user:");
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
@@ -53,7 +53,6 @@ public class Main {
                 System.out.println("User registered successfully: " + newUser.getName());
 
             } else if (choice == 2) {
-                // логин
                 System.out.println("\nLogin:");
                 System.out.print("Enter email: ");
                 String email = scanner.nextLine();
@@ -73,61 +72,26 @@ public class Main {
                 } else {
                     System.out.println("Invalid password. Try again.");
                 }
-
             } else if (choice == 3) {
-                if (loggedInUser == null) {
-                    System.out.println("You must be logged in to browse games!");
-                    continue;
-                }
-
-                // вывод жанров
-                List<Genre> genres = genreDAO.readAll();
-                if (genres.isEmpty()) {
-                    System.out.println("No genres available.");
-                    continue;
-                }
-
                 System.out.println("\nAvailable genres:");
+                List<Genre> genres = genreDAO.readAll();
                 for (Genre genre : genres) {
                     System.out.println("ID: " + genre.getId() + " | Name: " + genre.getName());
                 }
-
-                // Выбор жанра
-                System.out.print("\nEnter the ID of the genre you want to explore: ");
-                Long genreId = scanner.nextLong();
-                scanner.nextLine();
-
-                Genre selectedGenre = genreDAO.read(genreId);
-                if (selectedGenre == null) {
-                    System.out.println("Invalid genre ID. Try again.");
-                    continue;
-                }
-
-                // Вывод игр внутри выбранного жанра
-                List<Game> games = gameDAO.findGamesByGenre(genreId);
-                if (games.isEmpty()) {
-                    System.out.println("No games available in this genre.");
-                    continue;
-                }
-
-                System.out.println("\nAvailable games in " + selectedGenre.getName() + ":");
-                for (Game game : games) {
-                    System.out.println("ID: " + game.getId() + " | Title: " + game.getTitle() + " | Price: " + game.getPrice() + "ТГ");
-                }
-
-                // Выбор игры
-                System.out.print("\nEnter the ID of the game you want to choose: ");
-                Long gameId = scanner.nextLong();
-                scanner.nextLine(); // Очистка буфера
-
-                Game selectedGame = gameDAO.read(gameId);
-                if (selectedGame != null) {
-                    System.out.println("You have selected: " + selectedGame.getTitle() + " for ТГ "+ selectedGame.getPrice() );
-                } else {
-                    System.out.println("Invalid game ID. Try again.");
-                }
-
             } else if (choice == 4) {
+                System.out.print("\nEnter a keyword to search for a game: ");
+                String keyword = scanner.nextLine();
+
+                List<Game> searchResults = gameDAO.searchGamesByTitle(keyword);
+                if (searchResults.isEmpty()) {
+                    System.out.println("No games found.");
+                } else {
+                    System.out.println("\nSearch results:");
+                    for (Game game : searchResults) {
+                        System.out.println("ID: " + game.getId() + " | Title: " + game.getTitle() + " | Price: " + game.getPrice() + "ТГ");
+                    }
+                }
+            } else if (choice == 5) {
                 System.out.println("Goodbye!");
                 break;
             } else {
