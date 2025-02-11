@@ -10,20 +10,26 @@ public class GameDAO extends BaseDAO<Game, Long> {
     }
 
     public List<Game> findGamesByGenre(Long genreId) {
-        Session session = getSession();
-        List<Game> games = session.createQuery("FROM Game WHERE genre.id = :genreId", Game.class)
-                .setParameter("genreId", genreId)
-                .list();
-        session.close();
-        return games;
+        try (Session session = getSession()) {
+            return session.createQuery("FROM Game WHERE genre.id = :genreId", Game.class)
+                    .setParameter("genreId", genreId)
+                    .list();
+        }
     }
 
     public Game findByTitle(String title) {
-        Session session = getSession();
-        Game game = session.createQuery("FROM Game WHERE title = :title", Game.class)
-                .setParameter("title", title)
-                .uniqueResult();
-        session.close();
-        return game;
+        try (Session session = getSession()) {
+            return session.createQuery("FROM Game WHERE title = :title", Game.class)
+                    .setParameter("title", title)
+                    .uniqueResult();
+        }
+    }
+
+    public List<Game> searchGamesByTitle(String keyword) {
+        try (Session session = getSession()) {
+            return session.createQuery("FROM Game WHERE LOWER(title) LIKE LOWER(:keyword)", Game.class)
+                    .setParameter("keyword", "%" + keyword + "%")
+                    .list();
+        }
     }
 }
