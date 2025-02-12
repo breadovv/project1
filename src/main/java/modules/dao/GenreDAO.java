@@ -1,20 +1,19 @@
 package modules.dao;
 
-import modules.enteties.Genre;
+import modules.enteties.Genres;
 import org.hibernate.Session;
-import java.util.List;
 
-public class GenreDAO extends BaseDAO<Genre, Long> {
+public class GenreDAO extends BaseDAO<Genres, Long> {
     public GenreDAO() {
-        super(Genre.class);
+        super(Genres.class);
     }
 
-    public Genre findByName(String name) {
+    public Genres findByName(String name) {
         Session session = getSession();
-        Genre genre = session.createQuery("FROM Genre WHERE name = :name", Genre.class)
+        Genres genres = session.createQuery("FROM Genres WHERE name = :name", Genres.class)
                 .setParameter("name", name)
                 .uniqueResult();
         session.close();
-        return genre;
+        return genres;
     }
 }

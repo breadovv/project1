@@ -1,34 +1,46 @@
+import modules.dao.CartDAO;
 import modules.dao.GameDAO;
 import modules.dao.GenreDAO;
 import modules.dao.UsersDAO;
-import modules.enteties.Game;
-import modules.enteties.Genre;
+import modules.enteties.Cart;
+import modules.enteties.Games;
+import modules.enteties.Genres;
 import modules.enteties.Users;
 
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Main {
+    public static void printMenuUnlogged() {
+        System.out.println("1. Register a new user");
+        System.out.println("2. Login");
+        System.out.println("3. Browse games by genre");
+        System.out.println("4. Search for a game by title");
+        System.out.println("5. Exit");
+    }
+    public static void printMenuLogged() {
+        System.out.println("1. Browse games by genre");
+        System.out.println("2. Logout");
+        System.out.println("3. Search for a game by title");
+        System.out.println("4. Add game to cart");
+        System.out.println("5. View cart");
+        System.out.println("6. Exit");
+    }
     public static void main(String[] args) {
         GameDAO gameDAO = new GameDAO();
         GenreDAO genreDAO = new GenreDAO();
         UsersDAO userDAO = new UsersDAO();
+        CartDAO cartDAO = new CartDAO();
         Scanner scanner = new Scanner(System.in);
         Users loggedInUser = null;
 
         while (true) {
             System.out.println("\n--- Game Shop ---");
             if (loggedInUser == null) {
-                System.out.println("1. Register a new user");
-                System.out.println("2. Login");
-                System.out.println("3. Browse games by genre");
-                System.out.println("4. Search for a game by title");
-                System.out.println("5. Exit");
+                printMenuUnlogged();
             } else {
-                System.out.println("1. Browse games by genre");
-                System.out.println("2. Logout");
-                System.out.println("3. Search for a game by title");
-                System.out.println("4. Exit");
+                printMenuLogged();
             }
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
@@ -51,7 +63,6 @@ public class Main {
                         System.out.println("User with this email already exists!");
                         continue;
                     }
-
                     Users newUser = new Users();
                     newUser.setName(name);
                     newUser.setEmail(email);
@@ -94,7 +105,7 @@ public class Main {
                     // поиск
                     searchGames(gameDAO, scanner);
 
-                } else if (choice == 5) {
+                }else if (choice == 5) {
                     System.out.println("Goodbye!");
                     break;
 
@@ -116,6 +127,28 @@ public class Main {
                     searchGames(gameDAO, scanner);
 
                 } else if (choice == 4) {
+                    System.out.print("Enter game ID to add to cart: ");
+                    Long gameId = scanner.nextLong();
+                    scanner.nextLine();
+
+                    if (gameDAO.read(gameId) != null) {
+                        Cart newCart = new Cart();
+                        newCart.setUser(loggedInUser);
+                        newCart.setGames(gameDAO.read(gameId));
+                        newCart.setQuantity(1);
+
+                        cartDAO.create(newCart);
+                        System.out.println("Game added to cart!");
+                    } else {
+                        System.out.println("Game not found!");
+                    }
+                } else if (choice == 5) {
+                    List<Cart> cartItems = cartDAO.findByUserId(loggedInUser.getId());
+                    System.out.println("\nYour cart:");
+                    for (Cart item : cartItems) {
+                        System.out.println("- " + item.getGames().getTitle() + " | Price: " + item.getGames().getPrice() + " ТГ");
+                    }
+                }else if (choice == 6) {
                     System.out.println("Goodbye!");
                     break;
 
@@ -128,13 +161,13 @@ public class Main {
 
     private static void displayGenres(GenreDAO genreDAO) {
         System.out.println("\nAvailable genres:");
-        List<Genre> genres = genreDAO.readAll();
+        List<Genres> genres = genreDAO.readAll();
         if (genres.isEmpty()) {
             System.out.println("No genres available.");
             return;
         }
 
-        for (Genre genre : genres) {
+        for (Genres genre : genres) {
             System.out.println("ID: " + genre.getId() + " | Name: " + genre.getName());
         }
     }
@@ -143,13 +176,13 @@ public class Main {
         System.out.print("\nEnter a keyword to search for a game: ");
         String keyword = scanner.nextLine();
 
-        List<Game> searchResults = gameDAO.searchGamesByTitle(keyword);
+        List<Games> searchResults = gameDAO.searchGamesByTitle(keyword);
         if (searchResults.isEmpty()) {
             System.out.println("No games found.");
         } else {
             System.out.println("\nSearch results:");
-            for (Game game : searchResults) {
-                System.out.println("ID: " + game.getId() + " | Title: " + game.getTitle() + " | Price: " + game.getPrice() + " ТГ");
+            for (Games games : searchResults) {
+                System.out.println("ID: " + games.getId() + " | Title: " + games.getTitle() + " | Price: " + games.getPrice() + " ТГ");
             }
         }
     }

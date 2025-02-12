@@ -1,33 +1,33 @@
 package modules.dao;
 
-import modules.enteties.Game;
+import modules.enteties.Games;
 import org.hibernate.Session;
 import java.util.List;
 
-public class GameDAO extends BaseDAO<Game, Long> {
+public class GameDAO extends BaseDAO<Games, Long> {
     public GameDAO() {
-        super(Game.class);
+        super(Games.class);
     }
 
-    public List<Game> findGamesByGenre(Long genreId) {
+    public List<Games> findGamesByGenre(Long genreId) {
         try (Session session = getSession()) {
-            return session.createQuery("FROM Game WHERE genre.id = :genreId", Game.class)
+            return session.createQuery("FROM Games WHERE genre.id = :genreId", Games.class)
                     .setParameter("genreId", genreId)
                     .list();
         }
     }
 
-    public Game findByTitle(String title) {
+    public Games findByTitle(String title) {
         try (Session session = getSession()) {
-            return session.createQuery("FROM Game WHERE title = :title", Game.class)
+            return session.createQuery("FROM Games WHERE title = :title", Games.class)
                     .setParameter("title", title)
                     .uniqueResult();
         }
     }
 
-    public List<Game> searchGamesByTitle(String keyword) {
+    public List<Games> searchGamesByTitle(String keyword) {
         try (Session session = getSession()) {
-            return session.createQuery("FROM Game g WHERE LOWER(g.title) LIKE LOWER(:keyword)", Game.class)
+            return session.createQuery("FROM Games g WHERE LOWER(g.title) LIKE LOWER(:keyword)", Games.class)
                     .setParameter("keyword", "%" + keyword + "%")
                     .list();
         }
