@@ -27,9 +27,12 @@ public class GameDAO extends BaseDAO<Game, Long> {
 
     public List<Game> searchGamesByTitle(String keyword) {
         try (Session session = getSession()) {
-            return session.createQuery("FROM Game WHERE LOWER(title) LIKE LOWER(:keyword)", Game.class)
+            return session.createQuery("FROM Game g WHERE LOWER(g.title) LIKE LOWER(:keyword)", Game.class)
                     .setParameter("keyword", "%" + keyword + "%")
                     .list();
         }
     }
+
+
 }
+

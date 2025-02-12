@@ -19,8 +19,9 @@ public class Genre implements Basic<Long> {
     @Column(name = "genre_id")
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "genre", nullable = false, unique = true)
     private String name;
+
 
     @Override
     public boolean equals(Object o) {

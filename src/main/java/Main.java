@@ -82,6 +82,7 @@ public class Main {
                 System.out.print("\nEnter a keyword to search for a game: ");
                 String keyword = scanner.nextLine();
 
+
                 List<Game> searchResults = gameDAO.searchGamesByTitle(keyword);
                 if (searchResults.isEmpty()) {
                     System.out.println("No games found.");
