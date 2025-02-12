@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 public abstract class BaseDAO<T extends Basic<ID>, ID extends Serializable> {

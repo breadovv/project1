@@ -6,7 +6,7 @@ CREATE DATABASE game_shop;
 
 CREATE TABLE "Genres" (
                           "genre_id" serial,
-                          "genre" text,
+                          "name" text,
                           PRIMARY KEY ("genre_id")
 );
 

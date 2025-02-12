@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/game_shop</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/game_shop</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">0000</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
@@ -15,8 +15,8 @@
 
 
         <mapping class="modules.enteties.Users"/>
-        <mapping class="modules.enteties.Game"/>
-        <mapping class="modules.enteties.Genre"/>
+        <mapping class="modules.enteties.Games"/>
+        <mapping class="modules.enteties.Genres"/>
         <mapping class="modules.enteties.Cart"/>
 
     </session-factory>

@@ -1,19 +1,13 @@
-INSERT INTO "Users" (user_id, name, phone, email) VALUES
-    (1, 'nagibator_228', '88005553535', 'nagibator@gmail.com'),
-    (2, 'breadovv', '87777777777', 'breadov@gmail.com'),
-    (3, 'doni', '86666666666', 'doni@gmail.com'),
-    (4, 'nurgaly', '85555555555', 'nurgaly@gmail.com');
+INSERT INTO "Genres" (name) VALUES
+    ('Adventure'),
+    ( 'Simulation'),
+    ( 'Sports'),
+    ( 'Fighting'),
+    ( 'Horror'),
+    ( 'Indie'),
+    ( 'Shooter');
 
-INSERT INTO "Genres" (genre_id, genre) VALUES
-    (1, 'Adventure'),
-    (2, 'Simulation'),
-    (3, 'Sports'),
-    (4, 'Fighting'),
-    (5, 'Horror'),
-    (6, 'Indie'),
-    (7, 'Shooter');
-
-INSERT INTO public."Games"("genre_id", "title", price, release_date)
+INSERT INTO "Games"("genre_id", "title", price, release_date)
 VALUES
     (1, 'Uncharted 4: A Thief''s End', 39.99, '2016-05-10'),
 
