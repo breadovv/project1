@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name = "\"Game\"")
+@Table(name = "\"Games\"")
 @Getter
 @Setter
 @ToString
@@ -23,7 +23,7 @@ public class Game implements Basic<Long> {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
 
